@@ -4,6 +4,7 @@ import random
 class Matrix:
 
     def __init__(self, rows: int = 3, cols: int = 3):
+        """ Default constructor. It creates the matrix and fills it with zeros """
         self.__rows = rows
         self.__cols = cols
         self.__matrix = []
@@ -14,21 +15,25 @@ class Matrix:
                 self.__matrix[i][j] = 0
 
     def random_fill_matrix(self):
+        """ This method fills the matrix with random numbers """
         for i in range(self.__rows):
             for j in range(self.__cols):
                 self.__matrix[i][j] = random.randint(1, 11)
 
     def __create_matrix(self, rows: int, cols: int):
+        """ This method creates matrix. It is 'private' method because it uses in constructor only """
         self.__rows, self.__cols = rows, cols
         [self.__matrix.append([0] * self.__cols) for _ in range(self.__rows)]
 
     def print_matrix(self):
+        """ This method print matrix """
         for i in range(self.__rows):
             for j in range(self.__cols):
                 print(str(self.__matrix[i][j]).ljust(5), end=' ')
             print()
 
     def eq_matrix(self, other_matrix):
+        """ This method returns True if both matrices equally. Otherwise, it returns False """
         result = True
         if self.__rows and self.__cols:
             for i in range(self.__rows):
@@ -41,21 +46,25 @@ class Matrix:
         return result
 
     def sum_matrix(self, other_matrix):
+        """ This method adds up the matrix and other_matrix """
         for i in range(self.__rows):
             for j in range(self.__cols):
                 self.__matrix[i][j] += other_matrix.__matrix[i][j]
 
     def sub_matrix(self, other_matrix):
+        """ This method subtracts other_matrix from the matrix """
         for i in range(self.__rows):
             for j in range(self.__cols):
                 self.__matrix[i][j] -= other_matrix.__matrix[i][j]
 
     def mul_number(self, number: float):
+        """ This method multiply the matrix by number """
         for i in range(self.__rows):
             for j in range(self.__cols):
                 self.__matrix[i][j] *= number
 
     def transpose(self):
+        """ This method transposes the matrix """
         result = Matrix(self.__rows, self.__cols)
         for i in range(self.__rows):
             for j in range(self.__cols):
@@ -63,6 +72,7 @@ class Matrix:
         return result
 
     def __minor_of_matrix(self, rows: int, cols: int):
+        """ This 'private' method use for calculate minor of the matrix """
         result = Matrix(self.__rows - 1, self.__cols - 1)
         tmp_row = 0
         for i in range(self.__rows):
@@ -76,6 +86,7 @@ class Matrix:
         return result
 
     def determinant(self):
+        """ This method use to find the determinant """
         result = 0
         if self.__rows < 3:
             result = self.__matrix[0][0] if self.__rows == 1 else self.__matrix[0][0] * self.__matrix[1][1] - \
@@ -87,6 +98,7 @@ class Matrix:
         return result
 
     def calc_complements(self):
+        """ This method use to find the matrix of algebraic complements """
         result = Matrix(self.__rows, self.__cols)
         for i in range(self.__rows):
             for j in range(self.__cols):
@@ -96,6 +108,7 @@ class Matrix:
         return result
 
     def inverse_matrix(self):
+        """ This method use to find the inverse matrix """
         determinant_val = self.determinant()
         if determinant_val:
             tmp_matrix = self.calc_complements()
@@ -128,29 +141,6 @@ class Matrix:
     def __mul__(self, number):
         return self.mul_number(number)
 
+    def __eq__(self, other_matrix):
+        return self.eq_matrix(other_matrix)
 
-A = Matrix()
-B = Matrix()
-C = Matrix()
-A.random_fill_matrix()
-B.random_fill_matrix()
-A.print_matrix()
-print()
-B.print_matrix()
-print()
-print(type(A + B))
-A.print_matrix()
-
-# A = Matrix()
-# A.set_matrix_value(0, 0, 98)
-# A.set_matrix_value(0, 1, 52)
-# A.set_matrix_value(0, 2, 50)
-# A.set_matrix_value(1, 0, 30)
-# A.set_matrix_value(1, 1, 18)
-# A.set_matrix_value(1, 2, 34)
-# A.set_matrix_value(2, 0, 1)
-# A.set_matrix_value(2, 1, 2)
-# A.set_matrix_value(2, 2, 3)
-# A.print_matrix()
-# C = A.inverse_matrix()
-# C.print_matrix()
