@@ -125,10 +125,10 @@ class Matrix:
     def set_matrix_value(self, row, col, value):
         self.__matrix[row][col] = value
 
-    def set_rows(self, row):
+    def set_rows(self, row: int):
         self.__rows = row
 
-    def set_cols(self, col):
+    def set_cols(self, col: int):
         self.__cols = col
 
     # overload operators
@@ -138,9 +138,16 @@ class Matrix:
     def __sub__(self, other_matrix):
         return self.sub_matrix(other_matrix)
 
-    def __mul__(self, number):
+    def __mul__(self, number: float):
         return self.mul_number(number)
 
     def __eq__(self, other_matrix):
         return self.eq_matrix(other_matrix)
 
+    def __setitem__(self, items: tuple, value: float):
+        i, j = items
+        self.set_matrix_value(i, j, value)
+
+    def __getitem__(self, items: tuple):
+        i, j = items
+        return self.get_matrix_value(i, j)
