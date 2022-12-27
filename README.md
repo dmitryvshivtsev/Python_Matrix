@@ -14,5 +14,8 @@ This project was created for help to myself understand OOP principles.
 * `print_matrix()`
 * `random_fill_matrix()`
 
-Examples of use these methods can be found in the `examples` folder.
+To run the tests, run the `make test` command 
+___
+**Docker:**
 
+This project uses Docker for training purposes. Inside the container, the unit tests are simply run.
