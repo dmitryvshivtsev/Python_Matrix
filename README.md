@@ -1,4 +1,5 @@
 # python_matrix_oop
+library for working with matrices in OOP
 
 This project was created for help to myself understand OOP principles.
 
