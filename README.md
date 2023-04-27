@@ -1,4 +1,4 @@
-# python_matrix_oop
+# Python Matrix
 
 This project was created for help to myself understand OOP principles.
 
